@@ -1,3 +1,4 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -43,4 +44,7 @@ dependencies {
 tasks.withType<Test> {
   useJUnitPlatform()
   systemProperties.putAll(project.gradle.startParameter.systemPropertiesArgs)
+
+  testLogging.exceptionFormat = TestExceptionFormat.FULL
+  testLogging.events("passed", "skipped", "failed")
 }
